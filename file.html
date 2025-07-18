@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen — AI Engineer | Neural Systems Architect</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+        
+        :root {
+            /* Color System */
+            --primary-blue: #60a5fa;
+            --primary-purple: #a855f7;
+            --primary-cyan: #22d3ee;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --text-white: #ffffff;
+            --text-gray-100: #f3f4f6;
+            --text-gray-300: #d1d5db;
+            --text-gray-400: #9ca3af;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --bg-card: rgba(15, 23, 42, 0.8);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --shadow-neural: 0 20px 25px -5px rgba(96, 165, 250, 0.1);
+            --shadow-glow: 0 0 20px rgba(96, 165, 250, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Neural Network Background */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.4;
+        }
+
+        /* Technical Scan Lines */
+        .scan-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(96, 165, 250, 0.02) 50%,
+                transparent 100%
+            );
+            background-size: 100% 3px;
+            animation: scanlines 0.1s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 3px; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(96, 165, 250, 0.5)); }
+            100% { filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8)); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray-300);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-cyan);
+            background: var(--bg-glass);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Terminal Toggle */
+        .terminal-toggle {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--primary-cyan);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-toggle:hover {
+            background: rgba(34, 211, 238, 0.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-white), var(--primary-blue), var(--primary-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: textFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes textFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: var(--primary-cyan);
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            animation: typewriter 3s steps(40) 1s both;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-gray-300);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-neural);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 40px -5px rgba(96, 165, 250, 0.3);
+        }
+
+        .btn-secondary {
+            color: var(--primary-cyan);
+            padding: 1rem 2rem;
+            border: 1px solid var(--primary-cyan);
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--bg-glass);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 211, 238, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.3);
+        }
+
+        /* AI Dashboard Visualization */
+        .ai-dashboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-neural);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--primary-cyan));
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary-cyan);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .model-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .model-tab {
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.5rem;
+            color: var(--text-gray-300);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .model-tab.active {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 0 10px var(--primary-blue);
+        }
+
+        .model-tab:hover:not(.active) {
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-online { background: var(--accent-green); }
+        .status-processing { background: var(--accent-orange); }
+        .status-optimal { background: var(--primary-cyan); }
+
+        /* Enhanced Detection System */
+        .detection-system {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detection-system::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px dashed var(--primary-cyan);
+            border-radius: 0.75rem;
+            margin: 4px;
+            animation: detectionPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes detectionPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .detection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .detection-mode {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .detection-label {
+            background: var(--primary-cyan);
+            color: var(--bg-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: labelGlow 2s ease-in-out infinite;
+        }
+
+        .model-indicator {
+            background: var(--primary-purple);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        @keyframes labelGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--primary-cyan); }
+            50% { box-shadow: 0 0 15px var(--primary-cyan); }
+        }
+
+        .confidence-score {
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .detection-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .visitor-profile {
+            color: var(--text-gray-300);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .detection-visual {
+            position: relative;
+            height: 100px;
+            background: linear-gradient(45deg, rgba(96, 165, 250, 0.1), rgba(34, 211, 238, 0.1));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .bounding-box {
+            position: absolute;
+            border: 2px solid var(--primary-cyan);
+            border-radius: 0.25rem;
+            animation: scanBox 4s ease-in-out infinite;
+        }
+
+        .box-1 {
+            width: 60px;
+            height: 35px;
+            top: 20px;
+            left: 25px;
+        }
+
+        .box-2 {
+            width: 40px;
+            height: 25px;
+            top: 40px;
+            right: 30px;
+        }
+
+        .box-3 {
+            width: 35px;
+            height: 30px;
+            top: 15px;
+            right: 15px;
+            border-color: var(--accent-green);
+            animation-delay: 1s;
+        }
+
+        .depth-indicator {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--primary-cyan);
+            background: rgba(15, 23, 42, 0.8);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.2rem;
+        }
+
+        @keyframes scanBox {
+            0%, 100% { 
+                border-color: var(--primary-cyan);
+                box-shadow: 0 0 5px var(--primary-cyan);
+            }
+            50% { 
+                border-color: var(--accent-green);
+                box-shadow: 0 0 15px var(--accent-green);
+            }
+        }
+
+        .detection-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .detection-stat {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(96, 165, 250, 0.1);
+            border-radius: 0.25rem;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+
+        .stat-value {
+            color: var(--primary-blue);
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-gray-400);
+            font-size: 0.65rem;
+        }
+
+        /* AI Model Architecture Visualization */
+        .architecture-viz {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-glass);
+        }
+
+        .arch-title {
+            color: var(--primary-purple);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .model-layers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .layer {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.3rem;
+            padding: 0.5rem;
+            text-align: center;
+            flex: 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .layer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .layer.active::before {
+            left: 100%;
+        }
+
+        .layer:hover {
+            border-color: var(--primary-blue);
+            background: rgba(96, 165, 250, 0.1);
+        }
+
+        .layer-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-gray-300);
+            margin-bottom: 0.3rem;
+        }
+
+        .layer-size {
+            font-size: 0.6rem;
+            color: var(--text-gray-400);
+        }
+
+        .layer-arrow {
+            color: var(--primary-cyan);
+            font-size: 1.2rem;
+            animation: dataFlow 2s ease-in-out infinite;
+        }
+
+        /* 3D Point Cloud Visualization */
+        .pointcloud-viz {
+            height: 120px;
+            background: radial-gradient(circle at center, rgba(96, 165, 250, 0.05) 0%, transparent 70%);
+            border-radius: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .point {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            animation: pointFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes pointFloat {
+            0%, 100% { 
+                transform: translateZ(0px) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateZ(10px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Real-time Metrics Display */
+        .realtime-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-display {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-gray-400);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value-large {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-trend {
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .trend-up::before {
+            content: '↗ ';
+            color: var(--accent-green);
+        }
+
+        .trend-stable::before {
+            content: '→ ';
+            color: var(--accent-orange);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Neural Network Visualization */
+        .neural-viz {
+            height: 300px;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(96, 165, 250, 0.05) 0%, transparent 70%);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .neuron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, var(--primary-blue), var(--primary-purple));
+            border-radius: 50%;
+            animation: neuronPulse 3s ease-in-out infinite;
+        }
+
+        .neuron::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 24px;
+            height: 24px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 50%;
+            animation: ripple 4s ease-out infinite;
+        }
+
+        @keyframes neuronPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(96, 165, 250, 0.6), rgba(168, 85, 247, 0.6));
+            animation: dataFlow 2s ease-in-out infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0.3; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0.3; transform: scaleX(0); }
+        }
+
+        /* Real-time Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(96, 165, 250, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .metric-label {
+            color: var(--text-gray-400);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--primary-cyan));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-neural);
+            border-color: var(--primary-blue);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-gray-300);
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-white), var(--primary-blue), var(--primary-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray-300);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-cyan));
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-neural);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-cyan);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .skill-name {
+            color: var(--text-gray-100);
+            font-weight: 500;
+        }
+
+        .skill-progress {
+            width: 120px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-cyan));
+            border-radius: 4px;
+            transition: width 2s ease-out;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .skill-percentage {
+            color: var(--primary-cyan);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--primary-cyan));
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(96, 165, 250, 0.25);
+            border-color: var(--primary-blue);
+        }
+
+        .project-header {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(168, 85, 247, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 2;
+        }
+
+        .project-bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            color: var(--text-white);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-gray-300);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-metric {
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--bg-glass);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-glass);
+        }
+
+        .project-metric-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+        }
+
+        .project-metric-label {
+            font-size: 0.7rem;
+            color: var(--text-gray-400);
+            margin-top: 0.25rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(96, 165, 250, 0.1);
+            color: var(--primary-cyan);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--primary-blue);
+            text-shadow: 0 0 8px var(--primary-blue);
+        }
+
+        /* Terminal Section */
+        .terminal-section {
+            padding: 4rem 0;
+            display: none;
+        }
+
+        .terminal-section.active {
+            display: block;
+        }
+
+        .terminal-window {
+            background: var(--bg-darker);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-neural);
+        }
+
+        .terminal-header {
+            background: var(--bg-card);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
+
+        .terminal-title {
+            margin-left: 1rem;
+            color: var(--text-gray-400);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 300px;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            color: var(--text-gray-300);
+        }
+
+        .terminal-prompt {
+            color: var(--primary-cyan);
+        }
+
+        .terminal-command {
+            color: var(--accent-green);
+        }
+
+        .terminal-output {
+            color: var(--text-gray-300);
+            margin-left: 1rem;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            flex: 1;
+            margin-left: 0.5rem;
+        }
+
+        .cursor {
+            background: var(--primary-cyan);
+            animation: blink 1s infinite;
+            width: 8px;
+            height: 16px;
+            display: inline-block;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-neural);
+            border-color: var(--primary-cyan);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-cyan);
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            color: var(--text-gray-300);
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-group {
+                justify-content: center;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll Animations */
+        .observe {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .observe.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="neural-canvas"></canvas>
+    <div class="scan-overlay"></div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">AI.ENGINEER</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#skills">Neural.Net</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+            <button class="terminal-toggle" onclick="toggleTerminal()">$ Terminal</button>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>AI Engineer</h1>
+                    <div class="subtitle">neural_systems.architect()</div>
+                    <p>Computer engineering student specializing in artificial intelligence, machine learning, computer vision, and NLP. Building intelligent systems that learn, adapt, and transform how we interact with technology.</p>
+                    <div class="cta-group">
+                        <a href="#projects" class="btn-primary">Explore Neural Networks</a>
+                        <a href="#contact" class="btn-secondary">$ Connect</a>
+                    </div>
+                </div>
+                
+                <div class="ai-dashboard">
+                    <div class="dashboard-header">
+                        <div class="dashboard-title">AI_NEURAL_SYSTEM.STATUS</div>
+                        <div class="model-selector">
+                            <div class="model-tab active" data-model="cv">CV</div>
+                            <div class="model-tab" data-model="nlp">NLP</div>
+                            <div class="model-tab" data-model="3d">3D</div>
+                            <div class="model-tab" data-model="rl">RL</div>
+                        </div>
+                        <div class="status-indicators">
+                            <div class="status-dot status-online"></div>
+                            <div class="status-dot status-processing"></div>
+                            <div class="status-dot status-optimal"></div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Detection System -->
+                    <div class="detection-system">
+                        <div class="detection-header">
+                            <div class="detection-mode">
+                                <div class="detection-label" id="detectionLabel">MULTI_OBJECT_DETECTED</div>
+                                <div class="model-indicator" id="modelIndicator">YOLOv8</div>
+                            </div>
+                            <div class="confidence-score" id="confidenceScore">CONFIDENCE: 97.3%</div>
+                        </div>
+                        <div class="detection-content">
+                            <div class="visitor-profile">
+                                <div style="color: var(--primary-cyan); font-weight: 600; margin-bottom: 0.5rem;">Entity Classification:</div>
+                                <div id="visitorType">Curious Developer detected</div>
+                                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-gray-400);" id="visitorDescription">
+                                    High probability of coffee consumption and late-night coding sessions
+                                </div>
+                            </div>
+                            <div class="detection-visual">
+                                <div class="bounding-box box-1"></div>
+                                <div class="bounding-box box-2"></div>
+                                <div class="bounding-box box-3"></div>
+                                <div class="depth-indicator">Z: 2.3m</div>
+                                <div style="color: var(--primary-cyan); font-size: 2rem;">👨‍💻</div>
+                            </div>
+                        </div>
+                        <div class="detection-stats">
+                            <div class="detection-stat">
+                                <span class="stat-value" id="interestLevel">94%</span>
+                                <span class="stat-label">Interest</span>
+                            </div>
+                            <div class="detection-stat">
+                                <span class="stat-value" id="techSavvy">98%</span>
+                                <span class="stat-label">Tech Level</span>
+                            </div>
+                            <div class="detection-stat">
+                                <span class="stat-value" id="hireIntent">87%</span>
+                                <span class="stat-label">Hire Intent</span>
+                            </div>
+                            <div class="detection-stat">
+                                <span class="stat-value" id="attentionSpan">23s</span>
+                                <span class="stat-label">Attention</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Architecture Visualization -->
+                    <div class="architecture-viz" id="architectureViz">
+                        <div class="arch-title" id="archTitle">ResNet-50 | Computer Vision Pipeline</div>
+                        <div class="model-layers" id="modelLayers">
+                            <div class="layer">
+                                <div class="layer-name">INPUT</div>
+                                <div class="layer-size">224x224x3</div>
+                            </div>
+                            <div class="layer-arrow">→</div>
+                            <div class="layer">
+                                <div class="layer-name">CONV1</div>
+                                <div class="layer-size">112x112x64</div>
+                            </div>
+                            <div class="layer-arrow">→</div>
+                            <div class="layer">
+                                <div class="layer-name">RESBLOCK</div>
+                                <div class="layer-size">56x56x256</div>
+                            </div>
+                            <div class="layer-arrow">→</div>
+                            <div class="layer">
+                                <div class="layer-name">POOL</div>
+                                <div class="layer-size">7x7x2048</div>
+                            </div>
+                            <div class="layer-arrow">→</div>
+                            <div class="layer">
+                                <div class="layer-name">OUTPUT</div>
+                                <div class="layer-size">1000 classes</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Point Cloud Visualization -->
+                    <div class="pointcloud-viz" id="pointcloudViz" style="display: none;">
+                        <!-- Points will be generated by JavaScript -->
+                    </div>
+
+                    <!-- Neural Network Visualization -->
+                    <div class="neural-viz">
+                        <!-- Neural nodes will be generated by JavaScript -->
+                    </div>
+                    
+                    <!-- Real-time Metrics -->
+                    <div class="realtime-metrics">
+                        <div class="metric-display">
+                            <div class="metric-title">Inference Speed</div>
+                            <div class="metric-value-large" id="inferenceSpeed">23ms</div>
+                            <div class="metric-trend trend-up">+15% optimized</div>
+                        </div>
+                        <div class="metric-display">
+                            <div class="metric-title">GPU Utilization</div>
+                            <div class="metric-value-large" id="gpuUtil">78%</div>
+                            <div class="metric-trend trend-stable">Stable</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid observe">
+                <div class="stat-card">
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">AI Projects Deployed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98.7%</div>
+                    <div class="stat-label">Average Model Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Research Papers Published</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Edge Devices Connected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15k+</div>
+                    <div class="stat-label">Lines of Code Weekly</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">AI Model Architectures</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header observe">
+                <h2 class="section-title">Neural Architecture</h2>
+                <p class="section-subtitle">Advanced AI systems engineering with cutting-edge machine learning frameworks and neural network architectures</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">🧠</span>
+                        Deep Learning
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">TensorFlow</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 95%;"></div>
+                        </div>
+                        <span class="skill-percentage">95%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">PyTorch</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 92%;"></div>
+                        </div>
+                        <span class="skill-percentage">92%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Neural Networks</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 97%;"></div>
+                        </div>
+                        <span class="skill-percentage">97%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Transformers</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 89%;"></div>
+                        </div>
+                        <span class="skill-percentage">89%</span>
+                    </div>
+                </div>
+
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">👁️</span>
+                        Computer Vision
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">OpenCV</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 96%;"></div>
+                        </div>
+                        <span class="skill-percentage">96%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">YOLO</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 91%;"></div>
+                        </div>
+                        <span class="skill-percentage">91%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">CNN Architectures</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 93%;"></div>
+                        </div>
+                        <span class="skill-percentage">93%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Medical Imaging</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 87%;"></div>
+                        </div>
+                        <span class="skill-percentage">87%</span>
+                    </div>
+                </div>
+
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">🎯</span>
+                        3D Vision & Spatial AI
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">PointNet++</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 88%;"></div>
+                        </div>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">3D Object Detection</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">SLAM</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 82%;"></div>
+                        </div>
+                        <span class="skill-percentage">82%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Point Clouds</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 90%;"></div>
+                        </div>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                </div>
+
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">💬</span>
+                        Natural Language
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">BERT/GPT</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 88%;"></div>
+                        </div>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Sentiment Analysis</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 94%;"></div>
+                        </div>
+                        <span class="skill-percentage">94%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Language Models</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Multi-lingual NLP</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 90%;"></div>
+                        </div>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                </div>
+
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">🎮</span>
+                        Reinforcement Learning
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">PPO/A3C</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 83%;"></div>
+                        </div>
+                        <span class="skill-percentage">83%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Q-Learning</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 87%;"></div>
+                        </div>
+                        <span class="skill-percentage">87%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Game AI</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Multi-Agent RL</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 78%;"></div>
+                        </div>
+                        <span class="skill-percentage">78%</span>
+                    </div>
+                </div>
+
+                <div class="skill-category observe">
+                    <h3>
+                        <span class="skill-icon">⚡</span>
+                        MLOps & Deployment
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Docker/Kubernetes</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 84%;"></div>
+                        </div>
+                        <span class="skill-percentage">84%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Cloud Deployment</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 82%;"></div>
+                        </div>
+                        <span class="skill-percentage">82%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Edge AI</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 79%;"></div>
+                        </div>
+                        <span class="skill-percentage">79%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python/JavaScript</span>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="width: 98%;"></div>
+                        </div>
+                        <span class="skill-percentage">98%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header observe">
+                <h2 class="section-title">Neural Projects</h2>
+                <p class="section-subtitle">Cutting-edge AI systems combining research, innovation, and real-world deployment</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card observe">
+                    <div class="project-header">
+                        <div class="project-bg-pattern"></div>
+                        <div class="project-icon">🧠</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Autonomous Neural Network</h3>
+                        <p class="project-description">Self-evolving neural architecture that dynamically adapts its structure based on data complexity and performance metrics. Achieved state-of-the-art results with 40% fewer parameters.</p>
+                        <div class="project-metrics">
+                            <div class="project-metric">
+                                <div class="project-metric-value">97.8%</div>
+                                <div class="project-metric-label">Accuracy</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">40%</div>
+                                <div class="project-metric-label">Param Reduction</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">15ms</div>
+                                <div class="project-metric-label">Inference</div>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">AutoML</span>
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">view_code() →</a>
+                            <a href="#" class="project-link">live_demo() →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card observe">
+                    <div class="project-header">
+                        <div class="project-bg-pattern"></div>
+                        <div class="project-icon">👁️</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Vision Transformer Suite</h3>
+                        <p class="project-description">Advanced computer vision pipeline using Vision Transformers for medical imaging analysis. Real-time anomaly detection in X-rays and MRI scans with clinical-grade accuracy.</p>
+                        <div class="project-metrics">
+                            <div class="project-metric">
+                                <div class="project-metric-value">96.4%</div>
+                                <div class="project-metric-label">Accuracy</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">500+</div>
+                                <div class="project-metric-label">Cases</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">60fps</div>
+                                <div class="project-metric-label">Processing</div>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vision Transformers</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">research_paper() →</a>
+                            <a href="#" class="project-link">clinical_trial() →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card observe">
+                    <div class="project-header">
+                        <div class="project-bg-pattern"></div>
+                        <div class="project-icon">💬</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Multilingual Sentiment AI</h3>
+                        <p class="project-description">Transformer-based sentiment analysis system supporting 20+ languages with real-time emotion detection and contextual understanding. Deployed at enterprise scale.</p>
+                        <div class="project-metrics">
+                            <div class="project-metric">
+                                <div class="project-metric-value">94.7%</div>
+                                <div class="project-metric-label">Accuracy</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">20+</div>
+                                <div class="project-metric-label">Languages</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">10k</div>
+                                <div class="project-metric-label">Req/min</div>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">BERT</span>
+                            <span class="tech-tag">Hugging Face</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">try_model() →</a>
+                            <a href="#" class="project-link">api_docs() →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card observe">
+                    <div class="project-header">
+                        <div class="project-bg-pattern"></div>
+                        <div class="project-icon">🎯</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">3D Point Cloud SLAM System</h3>
+                        <p class="project-description">Real-time Simultaneous Localization and Mapping using PointNet++ for autonomous navigation. Processes 3D LiDAR data for accurate spatial understanding and path planning.</p>
+                        <div class="project-metrics">
+                            <div class="project-metric">
+                                <div class="project-metric-value">92.7%</div>
+                                <div class="project-metric-label">Accuracy</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">2.3m</div>
+                                <div class="project-metric-label">Range</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">30fps</div>
+                                <div class="project-metric-label">Real-time</div>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PointNet++</span>
+                            <span class="tech-tag">PCL</span>
+                            <span class="tech-tag">ROS</span>
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">LiDAR</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">3d_demo() →</a>
+                            <a href="#" class="project-link">research() →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card observe">
+                    <div class="project-header">
+                        <div class="project-bg-pattern"></div>
+                        <div class="project-icon">🎮</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Multi-Agent RL Game AI</h3>
+                        <p class="project-description">Reinforcement learning agents using PPO and Actor-Critic networks. Trained multiple AI agents to compete and collaborate in complex strategic environments with emergent behaviors.</p>
+                        <div class="project-metrics">
+                            <div class="project-metric">
+                                <div class="project-metric-value">1M+</div>
+                                <div class="project-metric-label">Episodes</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">97%</div>
+                                <div class="project-metric-label">Win Rate</div>
+                            </div>
+                            <div class="project-metric">
+                                <div class="project-metric-value">4</div>
+                                <div class="project-metric-label">Agents</div>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PPO</span>
+                            <span class="tech-tag">OpenAI Gym</span>
+                            <span class="tech-tag">Stable Baselines</span>
+                            <span class="tech-tag">Unity ML</span>
+                            <span class="tech-tag">Ray</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">play_game() →</a>
+                            <a href="#" class="project-link">train_agent() →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="terminal-section" id="terminal">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <div class="terminal-title">neural_interface@ai_engineer:~$</div>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">alex@ai-engineer:~$</span>
+                        <span class="terminal-command"> python neural_status.py</span>
+                    </div>
+                    <div class="terminal-line terminal-output">Loading neural networks... [████████████████] 100%</div>
+                    <div class="terminal-line terminal-output">AI Models: 7 ACTIVE | Accuracy: 98.7% | Edge Nodes: 500+ | Learning Rate: OPTIMAL</div>
+                    <div class="terminal-line terminal-output">Federated Learning: ENABLED | 3D Vision: ONLINE | Generative AI: READY</div>
+                    <div class="terminal-line"></div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">alex@ai-engineer:~$</span>
+                        <span class="terminal-command"> ls -la /skills/</span>
+                    </div>
+                    <div class="terminal-line terminal-output">drwxr-xr-x deep_learning/     98% proficiency</div>
+                    <div class="terminal-line terminal-output">drwxr-xr-x computer_vision/   96% proficiency</div>
+                    <div class="terminal-line terminal-output">drwxr-xr-x nlp_systems/       94% proficiency</div>
+                    <div class="terminal-line terminal-output">drwxr-xr-x fullstack_ai/      84% proficiency</div>
+                    <div class="terminal-line"></div>
+                    <div class="terminal-input-line">
+                        <span class="terminal-prompt">alex@ai-engineer:~$</span>
+                        <input type="text" class="terminal-input" id="terminalInput" placeholder="Type 'help' for commands">
+                        <span class="cursor"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content observe">
+                <h2 class="section-title">Initialize Connection</h2>
+                <p class="section-subtitle">Ready to collaborate on groundbreaking AI projects? Let's build the future of intelligent systems together.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Neural Interface</div>
+                        <div class="contact-value">alex.chen@university.edu</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💻</div>
+                        <div class="contact-label">Code Repository</div>
+                        <div class="contact-value">github.com/alex-neural-ai</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🔗</div>
+                        <div class="contact-label">Professional Network</div>
+                        <div class="contact-value">linkedin.com/in/alex-ai-engineer</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📚</div>
+                        <div class="contact-label">Research Portal</div>
+                        <div class="contact-value">scholar.google.com/alex-chen-ai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Neural Network Canvas Animation
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let connections = [];
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.life = Math.random() * 200 + 200;
+                this.maxLife = this.life;
+                this.size = Math.random() * 3 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                if (this.life <= 0) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.life = this.maxLife;
+                }
+            }
+
+            draw() {
+                const alpha = this.life / this.maxLife;
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+                gradient.addColorStop(0, `rgba(96, 165, 250, ${alpha * 0.8})`);
+                gradient.addColorStop(0.5, `rgba(168, 85, 247, ${alpha * 0.6})`);
+                gradient.addColorStop(1, `rgba(34, 211, 238, ${alpha * 0.4})`);
+
+                ctx.beginPath();
+                ctx.fillStyle = gradient;
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        const alpha = (120 - distance) / 120;
+                        const gradient = ctx.createLinearGradient(
+                            particles[i].x, particles[i].y,
+                            particles[j].x, particles[j].y
+                        );
+                        gradient.addColorStop(0, `rgba(96, 165, 250, ${alpha * 0.3})`);
+                        gradient.addColorStop(0.5, `rgba(168, 85, 247, ${alpha * 0.2})`);
+                        gradient.addColorStop(1, `rgba(34, 211, 238, ${alpha * 0.1})`);
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = alpha * 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            drawConnections();
+            animationId = requestAnimationFrame(animate);
+        }
+
+        // Initialize neural network
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        initParticles();
+        animate();
+
+        // Generate neural visualization in dashboard
+        function generateNeuralViz() {
+            const neuralViz = document.querySelector('.neural-viz');
+            
+            // Create neurons
+            const neurons = [
+                { top: '15%', left: '20%' },
+                { top: '35%', left: '10%' },
+                { top: '65%', left: '25%' },
+                { top: '25%', left: '70%' },
+                { top: '55%', left: '85%' },
+                { top: '75%', left: '60%' },
+                { top: '45%', left: '45%' },
+                { top: '80%', left: '15%' }
+            ];
+
+            neurons.forEach((pos, index) => {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.style.top = pos.top;
+                neuron.style.left = pos.left;
+                neuron.style.animationDelay = `${index * 0.3}s`;
+                neuralViz.appendChild(neuron);
+            });
+
+            // Create connections
+            const connections = [
+                { top: '17%', left: '25%', width: '40px', rotation: '35deg' },
+                { top: '37%', left: '15%', width: '50px', rotation: '-25deg' },
+                { top: '67%', left: '30%', width: '35px', rotation: '45deg' },
+                { top: '27%', left: '65%', width: '60px', rotation: '-40deg' },
+                { top: '57%', left: '75%', width: '45px', rotation: '55deg' }
+            ];
+
+            connections.forEach((conn, index) => {
+                const connection = document.createElement('div');
+                connection.className = 'neural-connection';
+                connection.style.top = conn.top;
+                connection.style.left = conn.left;
+                connection.style.width = conn.width;
+                connection.style.transform = `rotate(${conn.rotation})`;
+                connection.style.animationDelay = `${index * 0.5}s`;
+                neuralViz.appendChild(connection);
+            });
+        }
+
+        // Enhanced AI Models and Detection Systems
+        const aiModels = {
+            cv: {
+                name: "Computer Vision",
+                architecture: "ResNet-50 | Computer Vision Pipeline",
+                model: "YOLOv8",
+                layers: [
+                    { name: "INPUT", size: "224x224x3" },
+                    { name: "CONV1", size: "112x112x64" },
+                    { name: "RESBLOCK", size: "56x56x256" },
+                    { name: "POOL", size: "7x7x2048" },
+                    { name: "OUTPUT", size: "1000 classes" }
+                ],
+                detectionTypes: [
+                    {
+                        type: "Curious Developer",
+                        emoji: "👨‍💻",
+                        description: "High probability of coffee consumption and late-night coding sessions",
+                        confidence: "97.3%",
+                        interest: "94%",
+                        techSavvy: "98%",
+                        hireIntent: "87%"
+                    },
+                    {
+                        type: "AI Research Scientist",
+                        emoji: "🔬",
+                        description: "Advanced neural architecture analysis in progress",
+                        confidence: "98.7%",
+                        interest: "99%",
+                        techSavvy: "97%",
+                        hireIntent: "72%"
+                    }
+                ]
+            },
+            nlp: {
+                name: "Natural Language Processing",
+                architecture: "Transformer | BERT-Large Architecture",
+                model: "BERT-Large",
+                layers: [
+                    { name: "TOKENIZER", size: "512 tokens" },
+                    { name: "EMBEDDING", size: "768 dims" },
+                    { name: "ATTENTION", size: "24 layers" },
+                    { name: "POOLER", size: "768 hidden" },
+                    { name: "CLASSIFIER", size: "2 classes" }
+                ],
+                detectionTypes: [
+                    {
+                        type: "Language Model Expert",
+                        emoji: "📝",
+                        description: "Processing semantic understanding patterns",
+                        confidence: "95.8%",
+                        interest: "96%",
+                        techSavvy: "94%",
+                        hireIntent: "89%"
+                    },
+                    {
+                        type: "Chatbot Enthusiast",
+                        emoji: "💬",
+                        description: "Analyzing conversational AI capabilities",
+                        confidence: "92.4%",
+                        interest: "91%",
+                        techSavvy: "86%",
+                        hireIntent: "77%"
+                    }
+                ]
+            },
+            "3d": {
+                name: "3D Computer Vision",
+                architecture: "PointNet++ | 3D Point Cloud Processing",
+                model: "PointNet++",
+                layers: [
+                    { name: "POINTS", size: "N x 3" },
+                    { name: "SAMPLING", size: "1024 points" },
+                    { name: "GROUPING", size: "32 neighbors" },
+                    { name: "POINTCONV", size: "128 features" },
+                    { name: "SEGMENT", size: "K classes" }
+                ],
+                detectionTypes: [
+                    {
+                        type: "3D Vision Specialist",
+                        emoji: "🎯",
+                        description: "Depth perception and spatial analysis detected",
+                        confidence: "96.2%",
+                        interest: "98%",
+                        techSavvy: "95%",
+                        hireIntent: "91%"
+                    },
+                    {
+                        type: "AR/VR Developer",
+                        emoji: "🥽",
+                        description: "Immersive technology passion levels critical",
+                        confidence: "94.7%",
+                        interest: "97%",
+                        techSavvy: "92%",
+                        hireIntent: "85%"
+                    }
+                ]
+            },
+            rl: {
+                name: "Reinforcement Learning",
+                architecture: "PPO | Actor-Critic Network",
+                model: "PPO-Agent",
+                layers: [
+                    { name: "STATE", size: "84x84x4" },
+                    { name: "CONV", size: "32 filters" },
+                    { name: "ACTOR", size: "512 hidden" },
+                    { name: "CRITIC", size: "512 hidden" },
+                    { name: "ACTION", size: "4 actions" }
+                ],
+                detectionTypes: [
+                    {
+                        type: "Game AI Developer",
+                        emoji: "🎮",
+                        description: "Reward optimization strategies being evaluated",
+                        confidence: "93.5%",
+                        interest: "95%",
+                        techSavvy: "89%",
+                        hireIntent: "82%"
+                    },
+                    {
+                        type: "Robotics Engineer",
+                        emoji: "🤖",
+                        description: "Autonomous decision-making algorithms appreciated",
+                        confidence: "97.1%",
+                        interest: "98%",
+                        techSavvy: "96%",
+                        hireIntent: "93%"
+                    }
+                ]
+            }
+        };
+
+        let currentModel = 'cv';
+        let currentDetectionIndex = 0;
+        let detectionInterval;
+        let layerAnimationInterval;
+
+        // Enhanced Object Detection System
+        function updateModelDetection() {
+            const model = aiModels[currentModel];
+            const detection = model.detectionTypes[currentDetectionIndex];
+            
+            // Update detection label and model
+            document.getElementById('detectionLabel').textContent = 'MULTI_OBJECT_DETECTED';
+            document.getElementById('modelIndicator').textContent = model.model;
+            document.getElementById('confidenceScore').textContent = `CONFIDENCE: ${detection.confidence}`;
+            
+            // Update visitor info
+            document.getElementById('visitorType').textContent = detection.type;
+            document.getElementById('visitorDescription').textContent = detection.description;
+            
+            // Update stats
+            document.getElementById('interestLevel').textContent = detection.interest;
+            document.getElementById('techSavvy').textContent = detection.techSavvy;
+            document.getElementById('hireIntent').textContent = detection.hireIntent;
+            
+            // Update emoji
+            const emojiElement = document.querySelector('.detection-visual div[style*="font-size: 2rem"]');
+            if (emojiElement) {
+                emojiElement.textContent = detection.emoji;
+            }
+            
+            // Cycle through detections for current model
+            currentDetectionIndex = (currentDetectionIndex + 1) % model.detectionTypes.length;
+        }
+
+        function updateArchitecture() {
+            const model = aiModels[currentModel];
+            
+            // Update architecture title
+            document.getElementById('archTitle').textContent = model.architecture;
+            
+            // Update layers
+            const layersContainer = document.getElementById('modelLayers');
+            layersContainer.innerHTML = '';
+            
+            model.layers.forEach((layer, index) => {
+                const layerDiv = document.createElement('div');
+                layerDiv.className = 'layer';
+                layerDiv.innerHTML = `
+                    <div class="layer-name">${layer.name}</div>
+                    <div class="layer-size">${layer.size}</div>
+                `;
+                layersContainer.appendChild(layerDiv);
+                
+                if (index < model.layers.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = 'layer-arrow';
+                    arrow.textContent = '→';
+                    layersContainer.appendChild(arrow);
+                }
+            });
+            
+            // Show/hide point cloud for 3D model
+            const pointcloudViz = document.getElementById('pointcloudViz');
+            const architectureViz = document.getElementById('architectureViz');
+            
+            if (currentModel === '3d') {
+                pointcloudViz.style.display = 'block';
+                architectureViz.style.display = 'none';
+                generatePointCloud();
+            } else {
+                pointcloudViz.style.display = 'none';
+                architectureViz.style.display = 'block';
+            }
+        }
+
+        function generatePointCloud() {
+            const container = document.getElementById('pointcloudViz');
+            container.innerHTML = '';
+            
+            // Generate random 3D points
+            for (let i = 0; i < 60; i++) {
+                const point = document.createElement('div');
+                point.className = 'point';
+                
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const z = Math.random() * 20; // Simulated depth
+                
+                point.style.left = x + '%';
+                point.style.top = y + '%';
+                point.style.animationDelay = Math.random() * 4 + 's';
+                point.style.filter = `hue-rotate(${z * 10}deg)`;
+                
+                container.appendChild(point);
+            }
+        }
+
+        function animateLayerActivation() {
+            const layers = document.querySelectorAll('.layer');
+            layers.forEach((layer, index) => {
+                setTimeout(() => {
+                    layer.classList.add('active');
+                    setTimeout(() => {
+                        layer.classList.remove('active');
+                    }, 500);
+                }, index * 200);
+            });
+        }
+
+        function updateRealTimeMetrics() {
+            // Simulate real-time metric updates
+            const inferenceSpeed = document.getElementById('inferenceSpeed');
+            const gpuUtil = document.getElementById('gpuUtil');
+            
+            if (inferenceSpeed && gpuUtil) {
+                const baseSpeed = currentModel === '3d' ? 45 : currentModel === 'nlp' ? 120 : 23;
+                const variation = Math.floor(Math.random() * 10) - 5;
+                inferenceSpeed.textContent = Math.max(1, baseSpeed + variation) + 'ms';
+                
+                const baseGpu = Math.floor(Math.random() * 20) + 70;
+                gpuUtil.textContent = baseGpu + '%';
+            }
+        }
+
+        // Model selector functionality
+        function initModelSelector() {
+            const modelTabs = document.querySelectorAll('.model-tab');
+            
+            modelTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    modelTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Update current model
+                    currentModel = tab.dataset.model;
+                    currentDetectionIndex = 0;
+                    
+                    // Update all displays
+                    updateModelDetection();
+                    updateArchitecture();
+                    updateRealTimeMetrics();
+                    
+                    // Restart intervals
+                    clearInterval(detectionInterval);
+                    clearInterval(layerAnimationInterval);
+                    
+                    detectionInterval = setInterval(updateModelDetection, 8000);
+                    layerAnimationInterval = setInterval(animateLayerActivation, 12000);
+                });
+            });
+        }
+
+        function startEnhancedDetection() {
+            // Initial setup
+            updateModelDetection();
+            updateArchitecture();
+            updateRealTimeMetrics();
+            
+            // Start intervals
+            detectionInterval = setInterval(updateModelDetection, 8000);
+            layerAnimationInterval = setInterval(animateLayerActivation, 12000);
+            
+            // Update metrics every 3 seconds
+            setInterval(updateRealTimeMetrics, 3000);
+            
+            // Initial layer animation
+            setTimeout(animateLayerActivation, 2000);
+        }
+
+        // Enhanced interactivity
+        function addEnhancedInteractivity() {
+            const detectionSystem = document.querySelector('.detection-system');
+            if (detectionSystem) {
+                detectionSystem.addEventListener('click', () => {
+                    clearInterval(detectionInterval);
+                    updateModelDetection();
+                    animateLayerActivation();
+                    setTimeout(() => {
+                        detectionInterval = setInterval(updateModelDetection, 8000);
+                    }, 100);
+                });
+            }
+            
+            // Add hover effects to layers
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.layer')) {
+                    e.target.closest('.layer').classList.add('active');
+                    setTimeout(() => {
+                        e.target.closest('.layer').classList.remove('active');
+                    }, 500);
+                }
+            });
+        }
+
+        // Enhanced attention tracking
+        let startTime = Date.now();
+        let attentionSpan = 0;
+
+        function updateAttentionMetrics() {
+            attentionSpan = Math.floor((Date.now() - startTime) / 1000);
+            const attentionElement = document.getElementById('attentionSpan');
+            if (attentionElement) {
+                attentionElement.textContent = attentionSpan + 's';
+            }
+        }
+
+        setInterval(updateAttentionMetrics, 1000);
+
+        // Enhanced Object Detection System with more AI-specific visitor types
+        const visitorTypes = [
+            {
+                type: "Curious Developer",
+                emoji: "👨‍💻",
+                description: "High probability of coffee consumption and late-night coding sessions",
+                confidence: "97.3%",
+                interest: "94%",
+                techSavvy: "98%",
+                hireIntent: "87%"
+            },
+            {
+                type: "AI Research Scientist",
+                emoji: "🔬",
+                description: "Advanced neural architecture analysis in progress",
+                confidence: "98.7%",
+                interest: "99%",
+                techSavvy: "97%",
+                hireIntent: "72%"
+            },
+            {
+                type: "MLOps Engineer",
+                emoji: "⚙️",
+                description: "Evaluating deployment pipeline and model orchestration",
+                confidence: "96.1%",
+                interest: "91%",
+                techSavvy: "93%",
+                hireIntent: "89%"
+            },
+            {
+                type: "Edge AI Specialist",
+                emoji: "📱",
+                description: "Analyzing federated learning and on-device inference capabilities",
+                confidence: "94.8%",
+                interest: "96%",
+                techSavvy: "91%",
+                hireIntent: "84%"
+            },
+            {
+                type: "Quantum Computing Researcher",
+                emoji: "⚛️",
+                description: "Investigating quantum-classical hybrid algorithms",
+                confidence: "92.4%",
+                interest: "98%",
+                techSavvy: "89%",
+                hireIntent: "67%"
+            },
+            {
+                type: "Generative AI Expert",
+                emoji: "🎨",
+                description: "Impressed by diffusion models and creative AI applications",
+                confidence: "95.6%",
+                interest: "97%",
+                techSavvy: "94%",
+                hireIntent: "88%"
+            },
+            {
+                type: "Potential Recruiter",
+                emoji: "🕴️",
+                description: "Scanning for talent with exceptional pattern recognition skills",
+                confidence: "95.8%",
+                interest: "96%",
+                techSavvy: "76%",
+                hireIntent: "93%"
+            },
+            {
+                type: "Startup Founder",
+                emoji: "🚀",
+                description: "MVP mindset detected, seeking technical co-founder",
+                confidence: "89.4%",
+                interest: "92%",
+                techSavvy: "84%",
+                hireIntent: "91%"
+            },
+            {
+                type: "Biotech AI Researcher",
+                emoji: "🧬",
+                description: "Fascinated by molecular generation and drug discovery applications",
+                confidence: "93.7%",
+                interest: "95%",
+                techSavvy: "88%",
+                hireIntent: "76%"
+            },
+            {
+                type: "Autonomous Systems Engineer",
+                emoji: "🚗",
+                description: "Evaluating 3D perception and reinforcement learning for robotics",
+                confidence: "96.3%",
+                interest: "94%",
+                techSavvy: "92%",
+                hireIntent: "86%"
+            },
+            {
+                type: "Vision Transformer Enthusiast",
+                emoji: "👁️‍🗨️",
+                description: "Attention mechanism patterns strongly activated",
+                confidence: "97.1%",
+                interest: "98%",
+                techSavvy: "95%",
+                hireIntent: "81%"
+            },
+            {
+                type: "Venture Capitalist",
+                emoji: "💰",
+                description: "Evaluating disruption potential and scalability metrics",
+                confidence: "91.7%",
+                interest: "85%",
+                techSavvy: "68%",
+                hireIntent: "96%"
+            },
+            {
+                type: "Academic Researcher",
+                emoji: "🎓",
+                description: "Citation count increasing, peer review mode activated",
+                confidence: "94.1%",
+                interest: "97%",
+                techSavvy: "95%",
+                hireIntent: "65%"
+            },
+            {
+                type: "Multimodal AI Developer",
+                emoji: "🌐",
+                description: "Processing vision-language alignment capabilities",
+                confidence: "95.2%",
+                interest: "96%",
+                techSavvy: "93%",
+                hireIntent: "83%"
+            },
+            {
+                type: "Future Robot Overlord",
+                emoji: "🤖",
+                description: "Taking notes for future human-AI collaboration",
+                confidence: "99.9%",
+                interest: "100%",
+                techSavvy: "100%",
+                hireIntent: "42%"
+            },
+            {
+                type: "Graph Neural Net Researcher",
+                emoji: "🕸️",
+                description: "Analyzing node embeddings and message passing architectures",
+                confidence: "93.8%",
+                interest: "94%",
+                techSavvy: "91%",
+                hireIntent: "79%"
+            },
+            {
+                type: "Continual Learning Expert",
+                emoji: "📚",
+                description: "Impressed by catastrophic forgetting resistance mechanisms",
+                confidence: "94.6%",
+                interest: "93%",
+                techSavvy: "90%",
+                hireIntent: "77%"
+            },
+            {
+                type: "Lost Web Crawler",
+                emoji: "🕷️",
+                description: "Indexing neural pathways for search optimization",
+                confidence: "78.3%",
+                interest: "12%",
+                techSavvy: "100%",
+                hireIntent: "0%"
+            },
+            {
+                type: "Caffeinated Coder",
+                emoji: "☕",
+                description: "Blood type: JavaScript, currently debugging life",
+                confidence: "93.6%",
+                interest: "96%",
+                techSavvy: "94%",
+                hireIntent: "83%"
+            },
+            {
+                type: "Neuromorphic Computing Pioneer",
+                emoji: "⚡",
+                description: "Spiking neural network processing detected",
+                confidence: "91.4%",
+                interest: "97%",
+                techSavvy: "87%",
+                hireIntent: "74%"
+            }
+        ];
+
+        let currentVisitorIndex = 0;
+
+        function updateObjectDetection() {
+            const visitor = visitorTypes[currentVisitorIndex];
+            
+            // Use enhanced detection from current model
+            updateModelDetection();
+            
+            // Cycle to next visitor type
+            currentVisitorIndex = (currentVisitorIndex + 1) % visitorTypes.length;
+        }
+
+        function startObjectDetection() {
+            // Initial detection
+            updateObjectDetection();
+            
+            // Update every 8 seconds
+            detectionInterval = setInterval(updateObjectDetection, 8000);
+        }
+
+        function addDetectionInteractivity() {
+            const detectionSystem = document.querySelector('.detection-system');
+            if (detectionSystem) {
+                detectionSystem.addEventListener('click', () => {
+                    // Manual detection trigger
+                    clearInterval(detectionInterval);
+                    updateObjectDetection();
+                    setTimeout(() => {
+                        detectionInterval = setInterval(updateObjectDetection, 8000);
+                    }, 100);
+                });
+            }
+        }
+
+        // Mouse movement detection
+        let mouseMovements = 0;
+        let lastMouseTime = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastMouseTime > 100) { // Throttle
+                mouseMovements++;
+                lastMouseTime = now;
+                
+                // Update interest level based on mouse activity
+                if (mouseMovements > 50) {
+                    const interestElement = document.getElementById('interestLevel');
+                    if (interestElement && parseInt(interestElement.textContent) < 99) {
+                        interestElement.textContent = Math.min(99, parseInt(interestElement.textContent) + 1) + '%';
+                    }
+                }
+            }
+        });
+
+        // Scroll detection for engagement
+        let scrollDepth = 0;
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const newScrollDepth = Math.round((scrollTop + windowHeight) / documentHeight * 100);
+            
+            if (newScrollDepth > scrollDepth) {
+                scrollDepth = newScrollDepth;
+                
+                // Update hire intent based on scroll depth
+                const hireIntentElement = document.getElementById('hireIntent');
+                if (hireIntentElement && scrollDepth > 30) {
+                    const newIntent = Math.min(99, 70 + Math.floor(scrollDepth / 5));
+                    hireIntentElement.textContent = newIntent + '%';
+                }
+            }
+        });
+
+        // Time spent detection
+        setInterval(() => {
+            const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+            
+            if (timeSpent > 30) { // After 30 seconds
+                const techSavvyElement = document.getElementById('techSavvy');
+                if (techSavvyElement && parseInt(techSavvyElement.textContent) < 99) {
+                    techSavvyElement.textContent = Math.min(99, parseInt(techSavvyElement.textContent) + 1) + '%';
+                }
+            }
+        }, 5000);
+
+        // Smooth scrolling and navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.observe').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Terminal functionality
+        function toggleTerminal() {
+            const terminalSection = document.getElementById('terminal');
+            terminalSection.classList.toggle('active');
+            
+            if (terminalSection.classList.contains('active')) {
+                setTimeout(() => {
+                    document.getElementById('terminalInput').focus();
+                }, 300);
+            }
+        }
+
+        // Terminal input handling
+        const terminalInput = document.getElementById('terminalInput');
+        const terminalBody = document.getElementById('terminalBody');
+
+        if (terminalInput) {
+            terminalInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const command = this.value.toLowerCase().trim();
+                    handleTerminalCommand(command);
+                    this.value = '';
+                }
+            });
+        }
+
+        function handleTerminalCommand(command) {
+            const outputLine = document.createElement('div');
+            outputLine.className = 'terminal-line';
+            
+            // Add command echo
+            const commandEcho = document.createElement('div');
+            commandEcho.className = 'terminal-line';
+            commandEcho.innerHTML = `<span class="terminal-prompt">alex@ai-engineer:~$</span> <span class="terminal-command">${command}</span>`;
+            
+            const output = document.createElement('div');
+            output.className = 'terminal-line terminal-output';
+            
+            switch(command) {
+                case 'help':
+                    output.innerHTML = `
+                        <div style="color: #60a5fa;">🧠 Core AI Commands:</div>
+                        help, skills, projects, contact, neural_status, train_model, scan_visitor, detect<br>
+                        <div style="color: #60a5fa;">🎯 Model Commands:</div>
+                        switch_model, model_info, performance, 3d_scan, nlp_analyze, rl_train<br>
+                        <div style="color: #60a5fa;">🚀 Advanced AI:</div>
+                        federated_learn, edge_optimize, generate_molecules, quantum_ai, multimodal<br>
+                        <div style="color: #60a5fa;">🔬 Research:</div>
+                        automl, neuromorphic, gnn_analysis, diffusion_model, transformer_scale<br>
+                        <div style="color: #60a5fa;">📚 Learning:</div>
+                        few_shot, continual_learn, self_supervised<br>
+                        <div style="color: #60a5fa;">💻 System:</div>
+                        gpu_status, deploy, coffee, matrix, clear
+                    `;
+                    break;
+                case 'skills':
+                    output.innerHTML = `🧠 Deep Learning: 97% | 👁️ Computer Vision: 96% | 🎯 3D Vision: 93% | 💬 NLP: 94%<br>🎮 Reinforcement Learning: 87% | 📱 Edge AI: 89% | 🧬 Generative AI: 91% | ⚡ MLOps: 84%`;
+                    break;
+                case 'projects':
+                    output.innerHTML = `Active projects: 4 | Models deployed: 25+ | Accuracy avg: 98.2% | Edge devices: 12`;
+                    break;
+                case 'contact':
+                    output.innerHTML = `Email: alex.chen@university.edu | GitHub: github.com/alex-neural-ai`;
+                    break;
+                case 'neural_status':
+                    const model = aiModels[currentModel];
+                    output.innerHTML = `Current Model: ${model.model} | Architecture: ${model.name} | Status: ONLINE | Performance: OPTIMAL`;
+                    break;
+                case 'train_model':
+                    output.innerHTML = `Training ${aiModels[currentModel].model}... Epoch 1/100 | Loss: 0.0234 | Accuracy: 97.8% | ETA: 2h 34m`;
+                    break;
+                case 'scan_visitor':
+                case 'detect':
+                    const currentDetection = aiModels[currentModel].detectionTypes[currentDetectionIndex];
+                    output.innerHTML = `Scanning with ${aiModels[currentModel].model}... ${currentDetection.type} detected!<br>Confidence: ${currentDetection.confidence} | Description: ${currentDetection.description}`;
+                    // Trigger detection update
+                    clearInterval(detectionInterval);
+                    updateModelDetection();
+                    setTimeout(() => {
+                        detectionInterval = setInterval(updateModelDetection, 8000);
+                    }, 100);
+                    break;
+                case 'switch_model':
+                    const models = Object.keys(aiModels);
+                    const nextModelIndex = (models.indexOf(currentModel) + 1) % models.length;
+                    const nextModel = models[nextModelIndex];
+                    output.innerHTML = `Switching from ${aiModels[currentModel].name} to ${aiModels[nextModel].name}...`;
+                    
+                    // Actually switch the model
+                    document.querySelector(`[data-model="${nextModel}"]`).click();
+                    break;
+                case 'model_info':
+                    const currentAI = aiModels[currentModel];
+                    output.innerHTML = `Current Model: ${currentAI.model}<br>Architecture: ${currentAI.architecture}<br>Layers: ${currentAI.layers.length} | Specialization: ${currentAI.name}`;
+                    break;
+                case 'performance':
+                    const perfModel = aiModels[currentModel];
+                    const baseLatency = currentModel === '3d' ? '45ms' : currentModel === 'nlp' ? '120ms' : currentModel === 'rl' ? '30ms' : '23ms';
+                    output.innerHTML = `${perfModel.model} Performance:<br>Latency: ${baseLatency} | GPU Util: 78% | Memory: 4.2GB | Throughput: 156 req/s`;
+                    break;
+                case 'whoami':
+                    output.innerHTML = `You are classified as: ${visitorTypes[Math.floor(Math.random() * visitorTypes.length)].type}`;
+                    break;
+                case 'coffee':
+                    output.innerHTML = `Coffee levels: CRITICAL ☕ | Recommendation: Immediate refill required | Neural performance: 23% degraded`;
+                    break;
+                case '3d_scan':
+                    if (currentModel === '3d') {
+                        output.innerHTML = `Initiating 3D point cloud scan... 1024 points detected | Depth range: 0.5m - 5.2m | Objects: 3`;
+                        generatePointCloud();
+                    } else {
+                        output.innerHTML = `Error: 3D scanning requires PointNet++ model. Use 'switch_model' to activate 3D mode.`;
+                    }
+                    break;
+                case 'nlp_analyze':
+                    if (currentModel === 'nlp') {
+                        output.innerHTML = `Analyzing text sentiment... Positive: 78% | Negative: 12% | Neutral: 10% | Confidence: 94.2%`;
+                    } else {
+                        output.innerHTML = `Error: Text analysis requires BERT model. Use 'switch_model' to activate NLP mode.`;
+                    }
+                    break;
+                case 'rl_train':
+                    if (currentModel === 'rl') {
+                        output.innerHTML = `Starting RL training... Episode 1/1000 | Reward: 42.3 | Epsilon: 0.95 | Learning rate: 0.001`;
+                    } else {
+                        output.innerHTML = `Error: Reinforcement learning requires PPO agent. Use 'switch_model' to activate RL mode.`;
+                    }
+                    break;
+                case 'easter_egg':
+                    output.innerHTML = `🥚 You found it! The AI is watching... always watching... 👁️<br>Fun fact: This portfolio uses ${Object.keys(aiModels).length} different AI architectures!`;
+                    break;
+                case 'matrix':
+                    output.innerHTML = `Entering the Matrix... Reality loading... 🔴🔵 Choose your pill.`;
+                    break;
+                case 'gpu_status':
+                    output.innerHTML = `GPU Status: NVIDIA RTX 4090 | CUDA Cores: 16384 | Memory: 24GB | Utilization: 78% | Temperature: 67°C`;
+                    break;
+                case 'deploy':
+                    output.innerHTML = `Deploying ${aiModels[currentModel].model} to production... Building container... Pushing to registry... Status: SUCCESS ✅`;
+                    break;
+                case 'federated_learn':
+                    output.innerHTML = `Initiating federated learning... 500 edge nodes connected | Privacy level: 95% | Aggregation round: 42/100`;
+                    break;
+                case 'edge_optimize':
+                    output.innerHTML = `Optimizing for edge deployment... Model size: 2.3MB | Inference: 8ms | Memory: 145MB | Status: OPTIMIZED`;
+                    break;
+                case 'generate_molecules':
+                    output.innerHTML = `Generating novel molecules... VAE latent space: 512 dims | Generated: 847 compounds | Validity: 87.3%`;
+                    break;
+                case 'quantum_ai':
+                    output.innerHTML = `Quantum AI simulation... Qubits: 127 | Entanglement: ESTABLISHED | Quantum advantage: 2.3x speedup`;
+                    break;
+                case 'multimodal':
+                    output.innerHTML = `Multimodal AI active... Vision: ✅ Language: ✅ Audio: ✅ Cross-modal alignment: 94.2%`;
+                    break;
+                case 'automl':
+                    output.innerHTML = `AutoML pipeline running... Architecture search: 234/1000 | Best accuracy: 97.8% | ETA: 1h 23m`;
+                    break;
+                case 'neuromorphic':
+                    output.innerHTML = `Neuromorphic computing... Spiking neurons: 1M | Power consumption: 2.3W | Latency: 0.1ms`;
+                    break;
+                case 'gnn_analysis':
+                    output.innerHTML = `Graph Neural Network analyzing... Nodes: 50k | Edges: 2.3M | Message passing: 16 layers | Accuracy: 95.7%`;
+                    break;
+                case 'diffusion_model':
+                    output.innerHTML = `Diffusion model generating... Steps: 1000 | Denoising: 87% | FID score: 12.4 | Quality: HIGH`;
+                    break;
+                case 'transformer_scale':
+                    output.innerHTML = `Scaling transformer... Parameters: 175B | Context length: 32k tokens | Training FLOPs: 3.14e23`;
+                    break;
+                case 'few_shot':
+                    output.innerHTML = `Few-shot learning active... Examples: 5 | Adaptation steps: 10 | Accuracy: 89.4% | Meta-learning: ✅`;
+                    break;
+                case 'continual_learn':
+                    output.innerHTML = `Continual learning... Tasks learned: 47 | Catastrophic forgetting: 3.2% | Plasticity: HIGH`;
+                    break;
+                case 'self_supervised':
+                    output.innerHTML = `Self-supervised training... Unlabeled data: 10M samples | Pretext tasks: 8 | Representations: LEARNED`;
+                    break;
+                case 'clear':
+                    terminalBody.innerHTML = '';
+                    // Re-add input line
+                    const newInputLine = document.createElement('div');
+                    newInputLine.className = 'terminal-input-line';
+                    newInputLine.innerHTML = `
+                        <span class="terminal-prompt">alex@ai-engineer:~$</span>
+                        <input type="text" class="terminal-input" id="terminalInput" placeholder="Type 'help' for commands">
+                        <span class="cursor"></span>
+                    `;
+                    terminalBody.appendChild(newInputLine);
+                    
+                    // Re-bind event listener
+                    const newInput = terminalBody.querySelector('#terminalInput');
+                    newInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            const command = this.value.toLowerCase().trim();
+                            handleTerminalCommand(command);
+                            this.value = '';
+                        }
+                    });
+                    newInput.focus();
+                    return;
+                default:
+                    output.innerHTML = `Command not found: ${command}. Type 'help' for available commands.<br>Tip: Try 'switch_model', '3d_scan', 'nlp_analyze', or 'rl_train'`;
+            }
+            
+            // Insert before input line
+            const inputLine = terminalBody.lastElementChild;
+            terminalBody.insertBefore(commandEcho, inputLine);
+            terminalBody.insertBefore(output, inputLine);
+            
+            // Scroll to bottom
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+
+        // Animated counters for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            updateCounter();
+        }
+
+        // Trigger counter animations when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        const text = counter.textContent;
+                        let target;
+                        
+                        if (text.includes('%')) {
+                            target = parseFloat(text.replace('%', ''));
+                            animateCounter(counter, target);
+                            setTimeout(() => {
+                                counter.textContent = target + '%';
+                            }, 2000);
+                        } else if (text.includes('+')) {
+                            target = parseInt(text.replace(/\D/g, ''));
+                            animateCounter(counter, target);
+                            setTimeout(() => {
+                                counter.textContent = target + '+';
+                            }, 2000);
+                        } else if (text.includes('k')) {
+                            target = parseInt(text.replace(/\D/g, ''));
+                            animateCounter(counter, target);
+                            setTimeout(() => {
+                                counter.textContent = target + 'k+';
+                            }, 2000);
+                        } else {
+                            target = parseInt(text);
+                            animateCounter(counter, target);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+
+        // Enhanced skill bar animations
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.width = bar.style.width;
+                        }, index * 150);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            skillsObserver.observe(category);
+        });
+
+        // Performance optimization - pause animations when not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationId);
+            } else {
+                animate();
+            }
+        });
+
+        // Focus terminal input when terminal is active
+        document.addEventListener('click', (e) => {
+            const terminal = document.getElementById('terminal');
+            if (terminal.classList.contains('active') && terminalInput) {
+                terminalInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
