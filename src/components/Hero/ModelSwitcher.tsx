@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
 interface ModelSwitcherProps {
   currentModel: string
@@ -8,12 +8,12 @@ interface ModelSwitcherProps {
 }
 
 export default function ModelSwitcher({ currentModel, onModelChange }: ModelSwitcherProps) {
-  const models = [
+  const models = useMemo(() => [
     { id: 'cv', label: 'CV' },
     { id: 'nlp', label: 'NLP' },
     { id: '3d', label: '3D' },
     { id: 'rl', label: 'RL' }
-  ]
+  ], [])
 
   // Auto-switch models every 5 seconds
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function ModelSwitcher({ currentModel, onModelChange }: ModelSwit
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [currentModel, onModelChange])
+  }, [currentModel, onModelChange, models])
 
   return (
     <div className="flex gap-2">

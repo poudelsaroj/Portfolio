@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import AIVisualizer from './AIVisualizer'
 import AIChatbot from '../Chat/AIChatbot'
 
@@ -11,14 +11,14 @@ export default function Hero() {
   const [isTyping, setIsTyping] = useState(true)
 
   const fullName = 'Saroj Poudel'
-  const roles = [
+  const roles = useMemo(() => [
     'ai_engineer()',
     'learner()',
     'full_stack_engineer()',
     'problem_solver()',
     'innovator()',
     'ml_enthusiast()'
-  ]
+  ], [])
 
   // Typewriter effect for name (one time only)
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Hero() {
 
     timeout = setTimeout(typeRole, 100)
     return () => clearTimeout(timeout)
-  }, [roleText, roleIndex, isTyping])
+  }, [roleText, roleIndex, isTyping, roles])
 
   return (
     <section id="home" className="min-h-screen flex items-center pt-24 pb-16">
