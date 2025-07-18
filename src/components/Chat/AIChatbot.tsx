@@ -73,7 +73,7 @@ export default function AIChatbot() {
       }
       setMessages([welcomeMessage])
     }
-  }, [isOpen])
+  }, [isOpen, messages.length])
 
   const simulateTyping = (text: string, callback: () => void) => {
     setIsTyping(true)
@@ -267,8 +267,8 @@ export default function AIChatbot() {
                   <span className="text-white font-bold">AI</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">Saroj's AI Assistant</h3>
-                  <p className="text-sm text-text-gray-400">Ask me anything about Saroj's background!</p>
+                  <h3 className="font-semibold text-white">Saroj&apos;s AI Assistant</h3>
+                  <p className="text-sm text-text-gray-400">Ask me anything about Saroj&apos;s background!</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">

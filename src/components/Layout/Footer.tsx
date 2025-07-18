@@ -81,7 +81,7 @@ export default function Footer() {
         {/* Easter Egg - Hidden Developer Console */}
         <div className="mt-4 text-center">
           <p className="text-text-gray-500 font-mono text-xs">
-            console.log("Thanks for visiting! 🚀 Built with 💙 and lots of debugging")
+            console.log(&quot;Thanks for visiting! 🚀 Built with 💙 and lots of debugging&quot;)
           </p>
         </div>
       </div>
