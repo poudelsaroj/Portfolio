@@ -38,7 +38,7 @@ export default function AIChatbot() {
     '1': "I've built several AI/ML projects including CNN image classification (94% accuracy), real-time object detection with YOLO, NLP chatbots, recommendation systems, and predictive analytics platforms using TensorFlow and PyTorch.",
     '2': "Expert in Python, JavaScript/TypeScript, C++. Skilled in PyTorch, TensorFlow, React/Next.js, Node.js, OpenCV, and specialized in Graph Neural Networks, Reinforcement Learning, and 3D Computer Vision.",
     '3': "Computer Engineering student at Pulchowk Engineering Campus with advanced AI training from NAAMII AI School (2024), Samsung Innovation Campus, and DataCamp certifications in Data Science and React development.",
-    '4': "Email: sarojpoudel@example.com | LinkedIn: linkedin.com/in/sarojpoudel | GitHub: github.com/sarojpoudel | Available for AI/ML collaborations and opportunities.",
+    '4': "Email: paudyalsaroj3@gmail.com | LinkedIn: https://www.linkedin.com/in/saroj-poudel-5ba036197/ | GitHub: github.com/poudelsaroj | Available for AI/ML collaborations and opportunities.",
     '5': "Aspiring AI researcher focused on AGI development, publishing research papers, leading AI teams, and founding an AI research lab to create technology that positively impacts society."
   }
 
@@ -49,7 +49,7 @@ export default function AIChatbot() {
     
     '3': "I'm currently pursuing my degree in Computer Engineering at Pulchowk Engineering Campus, one of Nepal's most prestigious engineering institutions.\n\n**Academic Journey:**\n🎓 **Computer Engineering** - Pulchowk Engineering Campus\n• Focus: AI, Machine Learning, and Software Engineering\n• Relevant Coursework: Data Structures, Algorithms, Database Systems, Computer Networks\n\n**Specialized Training:**\n🧠 **NAAMII AI School (ANAIS 2024)** - Advanced AI specialization\n• Geometric Deep Learning\n• Graph Neural Networks\n• Transformer Architecture\n• Self-supervised Learning\n\n💻 **Samsung Innovation Campus** - Data Science Foundation\n🐍 **DataCamp Certified Data Scientist** - Python specialization\n⚛️ **Meta/Coursera** - React & JavaScript mastery\n\nMy education combines strong theoretical foundations with hands-on practical experience, preparing me for the challenges of modern AI development.",
     
-    '4': "I'd love to connect with you! Here are the best ways to reach me:\n\n**Professional Contact:**\n📧 **Email:** sarojpoudel@example.com\n💼 **LinkedIn:** linkedin.com/in/sarojpoudel\n🐱 **GitHub:** github.com/sarojpoudel\n\n**Social Media:**\n🐦 **Twitter:** @sarojpoudel\n📸 **Instagram:** @sarojpoudel\n💬 **Discord:** Available for tech discussions\n\n**Quick Response:**\n• Email: Best for formal inquiries and project discussions\n• LinkedIn: Professional networking and opportunities\n• GitHub: Code collaboration and technical questions\n\n**Response Time:**\n• Typically respond within 24 hours\n• Faster response for urgent technical discussions\n• Always open to discussing AI/ML projects and collaborations!\n\nFeel free to reach out about opportunities, collaborations, or just to chat about AI and technology!",
+    '4': "I'd love to connect with you! Here are the best ways to reach me:\n\n**Professional Contact:**\n📧 **Email:** paudyalsaroj3@gmail.com\n💼 **LinkedIn:** https://www.linkedin.com/in/saroj-poudel-5ba036197/\n🐱 **GitHub:** github.com/poudelsaroj\n\n**Social Media:**\n🐦 **Twitter:** @sarojpoudel\n📸 **Instagram:** @sarojpoudel\n💬 **Discord:** Available for tech discussions\n\n**Quick Response:**\n• Email: Best for formal inquiries and project discussions\n• LinkedIn: Professional networking and opportunities\n• GitHub: Code collaboration and technical questions\n\n**Response Time:**\n• Typically respond within 24 hours\n• Faster response for urgent technical discussions\n• Always open to discussing AI/ML projects and collaborations!\n\nFeel free to reach out about opportunities, collaborations, or just to chat about AI and technology!",
     
     '5': "My career vision is to become a leading AI researcher and engineer who creates technology that positively impacts society.\n\n**Short-term Goals (1-2 years):**\n🎯 Complete my Computer Engineering degree with excellence\n🔬 Publish research papers in top-tier AI conferences\n💼 Join a cutting-edge AI research team or startup\n🌟 Contribute to open-source AI projects\n\n**Medium-term Goals (3-5 years):**\n🚀 Lead AI development teams on groundbreaking projects\n🧠 Specialize in AGI (Artificial General Intelligence) research\n🌍 Develop AI solutions for global challenges like climate change\n📚 Mentor the next generation of AI engineers\n\n**Long-term Vision (5+ years):**\n🏢 Found an AI research lab or company\n🎓 Pursue a PhD in AI/ML from a top university\n🌐 Bridge the gap between AI research and practical applications\n🤝 Foster international collaboration in AI development\n\n**Core Values:**\n• Ethical AI development\n• Making technology accessible to everyone\n• Solving real-world problems\n• Continuous learning and adaptation\n\nI believe AI should augment human capabilities, not replace them. My goal is to create intelligent systems that empower people and make the world a better place!"
   }
@@ -87,8 +87,8 @@ export default function AIChatbot() {
 
   const simulateResearch = (callback: () => void) => {
     const sources = [
-      "linkedin.com/in/sarojpoudel",
-      "github.com/sarojpoudel",
+      "https://www.linkedin.com/in/saroj-poudel-5ba036197/",
+      "github.com/poudelsaroj",
       "portfolio.sarojpoudel.com",
       "scholar.google.com",
       "researchgate.net",

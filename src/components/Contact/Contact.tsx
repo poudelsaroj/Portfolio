@@ -69,20 +69,20 @@ export default function Contact() {
     {
       icon: '📧',
       label: 'Neural Interface',
-      value: 'sarojpoudel@example.com',
-      link: 'mailto:sarojpoudel@example.com'
+      value: 'paudyalsaroj3@gmail.com',
+      link: 'mailto:paudyalsaroj3@gmail.com'
     },
     {
       icon: '💻',
       label: 'Code Repository',
-      value: 'github.com/sarojpoudel',
-      link: 'https://github.com/sarojpoudel'
+      value: 'github.com/poudelsaroj',
+      link: 'https://github.com/poudelsaroj'
     },
     {
       icon: '🔗',
       label: 'Professional Network',
       value: 'linkedin.com/in/sarojpoudel',
-      link: 'https://linkedin.com/in/sarojpoudel'
+      link: 'https://www.linkedin.com/in/saroj-poudel-5ba036197/'
     },
     {
       icon: '�',

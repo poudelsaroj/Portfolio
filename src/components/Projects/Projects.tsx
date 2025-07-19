@@ -11,7 +11,7 @@ export default function Projects() {
       ],
       techStack: ['Python', 'PyTorch', 'NLTK', 'SpaCy', 'Transformers'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'demo() →', href: '#' }
       ]
     },
@@ -26,7 +26,7 @@ export default function Projects() {
       ],
       techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Stripe API'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'live_demo() →', href: '#' }
       ]
     },
@@ -41,7 +41,7 @@ export default function Projects() {
       ],
       techStack: ['C++', 'CMake', 'OOP', 'Game Logic', 'AI'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'play_game() →', href: '#' }
       ]
     },
@@ -56,7 +56,7 @@ export default function Projects() {
       ],
       techStack: ['React', 'JavaScript', 'Axios', 'CSS', 'Weather API'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'live_demo() →', href: '#' }
       ]
     },
@@ -71,7 +71,7 @@ export default function Projects() {
       ],
       techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'system_demo() →', href: '#' }
       ]
     },
@@ -86,7 +86,7 @@ export default function Projects() {
       ],
       techStack: ['Graph Theory', 'Algorithms', 'Data Structures', 'Optimization'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'algorithm() →', href: '#' }
       ]
     },
@@ -101,7 +101,7 @@ export default function Projects() {
       ],
       techStack: ['Ant Colony Optimization', 'GPS Data', 'Visualization', 'Haversine'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'visualize() →', href: '#' }
       ]
     },
@@ -116,7 +116,7 @@ export default function Projects() {
       ],
       techStack: ['Computer Vision', 'NLP', 'Machine Learning', 'Image Processing'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/sarojpoudel' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
         { label: 'ml_demo() →', href: '#' }
       ]
     }
