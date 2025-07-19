@@ -7,8 +7,14 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://saroj-poudel.com.np' : '',
-  basePath: ''
+  // Remove assetPrefix for custom domain - GitHub Pages handles this automatically
+  assetPrefix: '',
+  basePath: '',
+  // Ensure proper static file handling
+  experimental: {
+    // This helps with static file optimization
+    optimizeCss: false,
+  }
 }
 
 module.exports = nextConfig
