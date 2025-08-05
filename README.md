@@ -33,7 +33,7 @@ A modern, interactive portfolio website showcasing AI/ML expertise with cutting-
 - **Deployment**: GitHub Pages with custom domain
 
 deployed in :
-portfolio (saroj-poudel.com.np)
+portfolio (https://www.saroj-poudel.com.np)
 
 
 
