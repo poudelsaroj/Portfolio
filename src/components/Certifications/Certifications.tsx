@@ -4,41 +4,41 @@ export default function Certifications() {
       title: 'NAAMII AI SCHOOL (ANAIS 2024)',
       issuer: 'NAAMII',
       date: '2024',
-      description: 'Completed courses on geometric deep learning, graph neural networks, transformers, and attention mechanisms. Implemented self-supervised learning techniques and 3D reconstruction.',
+      description: 'Completed advanced courses on geometric deep learning, graph neural networks, transformers, and attention mechanisms. Implemented self-supervised learning techniques and 3D reconstruction in 10-hour hackathon project.',
       status: 'Completed',
-      link: '#'
+      link: 'https://drive.google.com/file/d/19u9aeCS5ODzuhaVD_hkGCRClaURCSXS6/view?usp=drive_link'
     },
     {
       title: 'Samsung Innovation Campus',
       issuer: 'Samsung',
       date: '2024',
-      description: 'Acquired fundamental data science and Python programming skills through a structured curriculum. Developed core data structures, algorithms, and machine learning foundations.',
+      description: 'Acquired fundamental data science skills and Python programming through structured curriculum. Developed expertise in data structures, algorithms, and machine learning foundations.',
       status: 'Completed',
-      link: '#'
+      link: 'https://www.samsungshv.com/us/learning/innovation-campus'
     },
     {
       title: 'Data Scientist with Python',
       issuer: 'DataCamp',
       date: '2024',
-      description: 'Gained proficiency in data manipulation, visualization, and statistical analysis using Pandas and NumPy. Built and evaluated machine learning models for real-world datasets.',
+      description: 'Gained proficiency in data manipulation, visualization, and statistical analysis using Pandas, NumPy, and Matplotlib. Built and evaluated machine learning models for real-world datasets and analytical challenges.',
       status: 'Certified',
-      link: '#'
+      link: 'https://drive.google.com/file/d/11DywBfPr57H-cC1AhbgJ6X7uXfzFSf1-/view?usp=drive_link'
     },
     {
       title: 'React Basics',
       issuer: 'Meta/Coursera',
       date: '2024',
-      description: 'Covered React fundamentals: component-based architecture, state management, and Hooks to build dynamic UIs.',
+      description: 'Component-based architecture, state management, and Hooks for dynamic UIs. Covered React fundamentals and modern development practices.',
       status: 'Completed',
-      link: '#'
+      link: 'https://coursera.org/share/92a8e02ad95c31adffd40b60833ef8e3'
     },
     {
       title: 'Programming with JavaScript',
       issuer: 'Meta/Coursera',
       date: '2024',
-      description: 'Mastered ES6 syntax, DOM manipulation, asynchronous programming, and building interactive web applications.',
+      description: 'ES6 syntax, DOM manipulation, asynchronous programming. Mastered modern JavaScript development and building interactive web applications.',
       status: 'Completed',
-      link: '#'
+      link: 'https://coursera.org/share/0a66a8cf2f233add4645f6d5cf1d9a33'
     }
   ]
 

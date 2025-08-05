@@ -3,82 +3,82 @@ export default function Projects() {
     {
       title: 'MCQ Generation using T5',
       icon: '🧠',
-      description: 'System using T5 transformer models to automatically generate multiple-choice questions from educational texts. Implemented text summarization and semantic analysis pipelines to produce contextually relevant distractors.',
+      description: 'Developed intelligent app using T5 transformer models to automatically generate multiple-choice questions from educational texts. Implemented advanced NLP techniques including text summarization and semantic analysis for contextually relevant distractors.',
       metrics: [
         { label: 'Model', value: 'T5' },
         { label: 'Accuracy', value: '90%+' },
         { label: 'Pipeline', value: 'NLP' }
       ],
-      techStack: ['Python', 'PyTorch', 'NLTK', 'SpaCy', 'Transformers'],
+      techStack: ['Python', 'PyTorch', 'T5 Transformers', 'NLTK', 'SpaCy', 'React Native (Expo)'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/mcq_generator_final' },
         { label: 'demo() →', href: '#' }
       ]
     },
     {
-      title: 'E-commerce Website',
-      icon: '�',
-      description: 'Full-stack e-commerce platform with user authentication, product catalog, shopping cart, and payment integration. Features responsive React front-end, Node.js/Express back-end, and MongoDB for data storage.',
+      title: 'Blockchain Poker Game',
+      icon: '🎰',
+      description: 'Implemented full-stack poker game using Sui blockchain for transparent and secure gameplay mechanics. Developed responsive front-end interface using Next.js for seamless user experience.',
+      metrics: [
+        { label: 'Blockchain', value: 'Sui' },
+        { label: 'Frontend', value: 'Next.js' },
+        { label: 'Web3', value: 'Yes' }
+      ],
+      techStack: ['Sui Blockchain', 'Next.js', 'JavaScript', 'Web3 Integration'],
+      links: [
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/Pui' },
+        { label: 'play_game() →', href: '#' }
+      ]
+    },
+    {
+      title: 'E-commerce Platform',
+      icon: '🛒',
+      description: 'Built comprehensive e-commerce platform with user authentication, product catalog, shopping cart, and payment integration. Developed responsive Next frontend, Node.js/Express backend, integrated with MongoDB and Stripe API.',
       metrics: [
         { label: 'Stack', value: 'MERN' },
         { label: 'Features', value: '15+' },
         { label: 'API', value: 'REST' }
       ],
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Stripe API'],
+      techStack: ['Next.js', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'Stripe API'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/e-commerce' },
         { label: 'live_demo() →', href: '#' }
       ]
     },
     {
-      title: 'Chess Game Implementation',
+      title: 'Chess Game Engine',
       icon: '♟️',
-      description: 'Full-featured chess application with move validation, game-state tracking, and AI opponent. Developed with Object-Oriented Design principles and simple GUI for board visualization.',
+      description: 'Engineered comprehensive chess application with complete rule implementation, move validation, and AI opponent. Designed intuitive GUI with visual board representation and game state tracking.',
       metrics: [
         { label: 'Language', value: 'C++' },
         { label: 'AI', value: 'Yes' },
         { label: 'GUI', value: 'Custom' }
       ],
-      techStack: ['C++', 'CMake', 'OOP', 'Game Logic', 'AI'],
+      techStack: ['C++', 'CMake', 'Object-Oriented Design', 'Game Development'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/chess' },
         { label: 'play_game() →', href: '#' }
-      ]
-    },
-    {
-      title: 'Weather App',
-      icon: '🌤️',
-      description: 'Web application that fetches and displays real-time weather data and five-day forecast. Designed with intuitive UI using React Hooks for state management and Axios for API requests.',
-      metrics: [
-        { label: 'Framework', value: 'React' },
-        { label: 'Real-time', value: 'Yes' },
-        { label: 'Forecast', value: '5 days' }
-      ],
-      techStack: ['React', 'JavaScript', 'Axios', 'CSS', 'Weather API'],
-      links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
-        { label: 'live_demo() →', href: '#' }
       ]
     },
     {
       title: 'Invigilator Management System',
       icon: '📋',
-      description: 'Web-based tool for scheduling exam invigilation, tracking assignments, and recording attendance. Implemented user roles (admin, invigilator, student) and RESTful APIs for CRUD operations.',
+      description: 'Developed web-based tool for scheduling exam invigilation, tracking assignments, and recording attendance. Implemented multi-role user system with RESTful APIs for efficient CRUD operations.',
       metrics: [
         { label: 'Users', value: '3 roles' },
         { label: 'API', value: 'REST' },
         { label: 'Database', value: 'MongoDB' }
       ],
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JavaScript'],
+      techStack: ['Next.js', 'Node.js', 'Express', 'MongoDB', 'RESTful APIs'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/Invigilator-Management-System' },
         { label: 'system_demo() →', href: '#' }
       ]
     },
     {
       title: 'Cash Flow Minimizer',
       icon: '💰',
-      description: 'Algorithmic solution using graph theory to optimize transaction networks and minimize net cash transfers. Implemented efficient algorithms for financial optimization.',
+      description: 'Graph theory-based algorithmic solution for optimizing transaction networks and minimizing net cash transfers between multiple parties.',
       metrics: [
         { label: 'Algorithm', value: 'Graph' },
         { label: 'Optimization', value: 'Yes' },
@@ -86,14 +86,14 @@ export default function Projects() {
       ],
       techStack: ['Graph Theory', 'Algorithms', 'Data Structures', 'Optimization'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/cashflow_visualizer' },
         { label: 'algorithm() →', href: '#' }
       ]
     },
     {
       title: 'Ant Colony Optimization Visualizer',
       icon: '🐜',
-      description: 'Visualization tool for route planning leveraging the Haversine formula on real GPS data. Interactive demonstration of swarm intelligence algorithms.',
+      description: 'Route planning tool using Haversine formula with real GPS data. Interactive demonstration of A*, Dijkstra\'s, and BFS algorithms with swarm intelligence optimization.',
       metrics: [
         { label: 'Algorithm', value: 'ACO' },
         { label: 'GPS', value: 'Real data' },
@@ -101,22 +101,37 @@ export default function Projects() {
       ],
       techStack: ['Ant Colony Optimization', 'GPS Data', 'Visualization', 'Haversine'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/ant_colony_optimization' },
         { label: 'visualize() →', href: '#' }
       ]
     },
     {
-      title: 'Face Mask Detection & Spam Classifier',
-      icon: '�',
-      description: 'Machine learning models for detecting face masks in images and classifying spam emails. Developed using computer vision and NLP techniques.',
+      title: 'Weather Application',
+      icon: '🌤️',
+      description: 'Real-time weather data and forecast app with React Hooks and API integration. Features intuitive UI for displaying current weather and 5-day forecasts.',
+      metrics: [
+        { label: 'Framework', value: 'React' },
+        { label: 'Real-time', value: 'Yes' },
+        { label: 'Forecast', value: '5 days' }
+      ],
+      techStack: ['React', 'JavaScript', 'Axios', 'CSS', 'Weather API'],
+      links: [
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/weather-app' },
+        { label: 'live_demo() →', href: '#' }
+      ]
+    },
+    {
+      title: 'Face Mask Detection System',
+      icon: '🎭',
+      description: 'Machine learning models for detecting face masks in images and spam email classification using deep learning and computer vision techniques.',
       metrics: [
         { label: 'CV Model', value: 'CNN' },
         { label: 'NLP Model', value: 'Yes' },
         { label: 'Accuracy', value: '90%+' }
       ],
-      techStack: ['Computer Vision', 'NLP', 'Machine Learning', 'Image Processing'],
+      techStack: ['Computer Vision', 'Deep Learning', 'Machine Learning', 'Image Processing'],
       links: [
-        { label: 'view_code() →', href: 'https://github.com/poudelsaroj' },
+        { label: 'view_code() →', href: 'https://github.com/poudelsaroj/face-mask-detection' },
         { label: 'ml_demo() →', href: '#' }
       ]
     }

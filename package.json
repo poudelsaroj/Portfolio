@@ -2,6 +2,15 @@
   "name": "ai-portfolio",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poudelsaroj/Portfolio.git"
+  },
+  "author": {
+    "name": "Saroj Poudel",
+    "email": "paudyalsaroj3@gmail.com",
+    "url": "https://github.com/poudelsaroj"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

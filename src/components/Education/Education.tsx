@@ -24,6 +24,31 @@ export default function Education() {
         'Completed multiple industry projects',
         'Participated in NAAMII AI School'
       ]
+    },
+    {
+      degree: 'AI Fellowship',
+      institution: 'FuseMachine',
+      location: 'Nepal',
+      duration: '2024',
+      status: 'Completed',
+      icon: '🤖',
+      description: 'Intensive AI fellowship program focusing on practical machine learning applications and industry best practices.',
+      coursework: [
+        'Python Programming',
+        'MLOps & Model Deployment',
+        'Deep Learning Fundamentals',
+        'Computer Vision Applications',
+        'Machine Learning Pipeline Design',
+        'Model Optimization Techniques',
+        'Production ML Systems',
+        'AI Ethics & Responsible AI'
+      ],
+      achievements: [
+        'Hands-on experience with ML pipelines',
+        'Industry-standard MLOps practices',
+        'Computer vision project implementation',
+        'Collaborative AI development'
+      ]
     }
   ]
 

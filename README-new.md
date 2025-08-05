@@ -84,7 +84,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ai-portfolio.git
+   git clone https://github.com/poudelsaroj/Portfolio.git
    cd ai-portfolio
    ```
 
@@ -146,7 +146,7 @@ src/
      ```
      Type: CNAME
      Name: @
-     Value: yourusername.github.io
+     Value: poudelsaroj.github.io
      ```
 
 3. **Deploy**
@@ -226,7 +226,7 @@ MIT License - feel free to use this template for your own portfolio!
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/ai-portfolio/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/poudelsaroj/Portfolio/issues).
 
 ## 🌟 Show your support
 

@@ -34,7 +34,7 @@ gpu_status, deploy, coffee, matrix, clear`,
     
     projects: 'Active projects: 5 | Models deployed: 35+ | Accuracy avg: 98.2% | Edge devices: 500+',
     
-    contact: 'Email: saroj.poudel@example.com | GitHub: github.com/saroj-poudel',
+    contact: 'Email: paudyalsaroj3@gmail.com | GitHub: github.com/poudelsaroj',
     
     certifications: '🏆 AWS ML Specialty | ☁️ Google Cloud ML Engineer | 🔷 Azure AI Engineer\n🎓 Deep Learning Specialization | 🔥 TensorFlow Developer | 👁️ Computer Vision Nanodegree\n⚛️ React Developer Certification | ⚙️ MLOps Engineering Specialization',
     
@@ -106,7 +106,7 @@ gpu_status, deploy, coffee, matrix, clear`,
               {history.map((item, index) => (
                 <div key={index} className="mb-4">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-primary-cyan">alex@ai-engineer:~$</span>
+                    <span className="text-primary-cyan">saroj@ai-engineer:~$</span>
                     <span className="text-accent-green">{item.command}</span>
                   </div>
                   <div className="text-text-gray-300 whitespace-pre-line ml-6">
@@ -117,7 +117,7 @@ gpu_status, deploy, coffee, matrix, clear`,
 
               {/* Current Input */}
               <form onSubmit={handleSubmit} className="flex items-center gap-2">
-                <span className="text-primary-cyan">alex@ai-engineer:~$</span>
+                <span className="text-primary-cyan">saroj@ai-engineer:~$</span>
                 <input
                   ref={inputRef}
                   type="text"
