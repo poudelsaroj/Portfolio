@@ -33,10 +33,9 @@ A modern, interactive portfolio website showcasing AI/ML expertise with cutting-
 - **Deployment**: GitHub Pages with custom domain
 
 deployed in :
-saroj-poudel.com.np
+portfolio (saroj-poudel.com.np)
 
 
-Give a ⭐️ if this project helped you!
 
 ---
 
